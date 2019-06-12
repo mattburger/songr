@@ -34,6 +34,9 @@ public class HelloWorldController {
     }
     @GetMapping("/reverse")
     public SentenceReverse reverseStr(@RequestParam(value = "sentence", defaultValue = "Hello world") String sentence ) {
+        if(sentence.equals("")) {
+            throw new IllegalArgumentException("Query value must not be an empty string.");
+        }
         return new SentenceReverse(++this.counter, sentence);
     }
 
