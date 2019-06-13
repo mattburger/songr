@@ -1,14 +1,17 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Handling Form Submission</title>
+    <title>Add Album</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1>Form</h1>
-<form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
-    <p>Id: <input type="text" th:field="*{id}" /></p>
-    <p>Message: <input type="text" th:field="*{content}" /></p>
+<h1>Add Album Form</h1>
+<form action="#" th:action="@{/albums/add}" th:object="${Album}" method="post">
+    <p>Album title: <input type="text" th:field="*{title}" /></p>
+    <p>Artist: <input type="text" th:field="*{artist}" /></p>
+    <p>Number of tracks: <input type="number" th:field="*{songCount}" /></p>
+    <p>Length of album (seconds): <input type="number" th:field="*{length}" /></p>
+    <p>Album art url: <input type="text" th:field="*{imageUrl}" /></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>
 </body>
