@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Iterator;
 
@@ -28,11 +29,10 @@ public class AlbumController {
         return "addAlbum";
     }
     @PostMapping("/albums/add")
-    public String addAlbumSubmit(@ModelAttribute Album album) {
-//        String sqlInsert = String.format("INSERT INTO albums (title, artist, song_count, length, image_url)" +
-//                " VALUES (%s, %s, $d, %d, %s)", album.title, album.artist, album.songCount, album.length, album.imageUrl );
+    public RedirectView addAlbumSubmit(@ModelAttribute Album album) {
+
         albumRepository.save(album);
 
-        return "allAlbums";
+        return new RedirectView("/albums");
     }
 }
