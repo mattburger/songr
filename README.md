@@ -12,3 +12,15 @@ Create a route that reverses the order of the words in a query parameter. For ex
 ## Testing
 - You can test this app be following the link to the test code, clone it, then add and edit to test to your liking.
 - [Test Code](https://github.com/mattburger/songr/tree/master/src/test/java/com/bjmbjm/code401d56day12/firstSpringDemo)
+
+# Lab 12: Spring MVC with Databases
+Create a simple webapp that retrieves and stores information to a sql db.
+
+## Tasks
+- Create an Album model.
+    - An Album has a title, an artist, a songCount, a length (in seconds), and an imageUrl that is a link to that album’s art.
+- A user should be able to see information about all the albums on the site.
+- A user should be able to add albums to the site.
+
+## Run
+- ./gradlew bootrun
