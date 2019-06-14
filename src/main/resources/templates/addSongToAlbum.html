@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Add Song to Album</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <h1>Add Song to Album Form</h1>
+
+        <form method="POST" action="/songs/add">
+            <label>Song Title</label>
+            <input type="text" name="title">
+
+            <label>Track number</label>
+            <input type="number" name="trackNumber">
+
+            <label>Length of song (secs)</label>
+            <input type="number" name="length">
+
+            <input type="submit" />
+        </form>
+    </body>
+</html>
