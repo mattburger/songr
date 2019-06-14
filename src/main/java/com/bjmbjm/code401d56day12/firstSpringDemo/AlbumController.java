@@ -15,6 +15,7 @@ public class AlbumController {
 
     @Autowired
     AlbumRepository albumRepository;
+    SongRepository songRepository;
 
     @GetMapping("/albums")
     public String getAllAlbums(Model m) {
@@ -27,6 +28,13 @@ public class AlbumController {
     public String addAlbum(Model m) {
         m.addAttribute("albums", new Album());
         return "addAlbum";
+    }
+
+    @GetMapping("/songs")
+    public String getAllSongs(Model m) {
+        Iterable<Song> songs = songRepository.findAll();
+        m.addAttribute("songs", songs);
+        return "allSongs";
     }
     @PostMapping("/albums/add")
     public RedirectView addAlbumSubmit(@ModelAttribute Album album) {
