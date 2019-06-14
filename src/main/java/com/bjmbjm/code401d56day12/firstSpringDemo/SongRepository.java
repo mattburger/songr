@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface SongRepository extends CrudRepository<Song, Long> {
-    // match exactly (method name and parameter name) with the title property in the Album class
-//    public List<Song> findByTitle(String title);
+    // match exactly (method name and parameter name) with the album property in the Song class
+    public List<Song> findByTitle(String album);
 }

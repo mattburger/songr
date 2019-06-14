@@ -5,16 +5,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Iterator;
+import java.util.List;
 
 @Controller
 public class AlbumController {
 
     @Autowired
     AlbumRepository albumRepository;
+    @Autowired
     SongRepository songRepository;
 
     @GetMapping("/albums")
@@ -36,11 +39,45 @@ public class AlbumController {
         m.addAttribute("songs", songs);
         return "allSongs";
     }
-    @PostMapping("/albums/add")
-    public RedirectView addAlbumSubmit(@ModelAttribute Album album) {
+    @GetMapping("/songs/add")
+    public String addSong(Model m) {
+        m.addAttribute("songs", new Song());
+        return "addSong";
+    }
 
-        albumRepository.save(album);
+    @GetMapping("/songs/{album}")
+    public String getSongsByAlbum(@PathVariable String album, Model m) {
+        Iterable<Song> songs  = songRepository.findByTitle(album);
+        m.addAttribute("songs", songs);
+        return "allSongs";
+    }
+
+    @GetMapping("songs/{album}/add")
+    public String addSongToAlbum(@PathVariable String album, Model m) {
+        m.addAttribute("songs", new Song());
+        return "addSongToAlbum";
+    }
+
+    @PostMapping("/albums/add")
+    public RedirectView addAlbumSubmit(String title, String artist, int songCount, int length, String imageUrl) {    //(@ModelAttribute Album album) {
+
+        albumRepository.save(new Album(title, artist,songCount, length, imageUrl));
 
         return new RedirectView("/albums");
+    }
+
+    @PostMapping("/songs/add")
+    public RedirectView addSongSubmit(String title, int length, String album ,int trackNumber) {    //(@ModelAttribute Song song {
+
+        songRepository.save(new Song(title, length, album, trackNumber));
+
+        return new RedirectView("/songs");
+    }
+
+    @PostMapping("songs/{album}/add")
+    public RedirectView addSongToAlbumSubmit (String title, int length, @PathVariable String album, int trackNumber) {
+        songRepository.save(new Song(title, length, album, trackNumber) );
+
+        return new RedirectView("/songs/" + album);
     }
 }
