@@ -1,9 +1,7 @@
-package com.bjmbjm.code401d56day12.firstSpringDemo;
+package com.bjmbjm.code401d56day12.firstSpringDemo.album;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 //Album model
 @Entity
@@ -19,6 +17,12 @@ public class Album {
     int length;
     String imageUrl;
 
+
+
+    @OneToMany(mappedBy = "album")
+    List<Song> songs;
+
+
     //default constructor
     public Album(){};
 
@@ -32,6 +36,9 @@ public class Album {
     }
 
     //getters
+    public long getId() {
+        return this.id;
+    }
     public String getTitle() {
         return this.title;
     }
@@ -52,24 +59,7 @@ public class Album {
         return this.imageUrl;
     }
 
-//    //setters
-//    public void setTitle(String title) {
-//        this.title = title;
-//    }
-//
-//    public void setArtist(String artist) {
-//        this.artist = artist;
-//    }
-//
-//    public void setSongCount(int songCount) {
-//        this.songCount = songCount;
-//    }
-//
-//    public void setLength(int length) {
-//        this.length = length;
-//    }
-//
-//    public void setImageUrl(String imageUrl) {
-//        this.imageUrl = imageUrl;
-//    }
+    public List<Song> getSongs() {
+        return this.songs;
+    }
 }
