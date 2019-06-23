@@ -1,8 +1,5 @@
 package com.bjmbjm.code401d56day12.firstSpringDemo;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 // hello, in English
 // hola, in Spanish
@@ -17,6 +14,8 @@ public class Greeting {
     long id;
     String language;
     String text;
+
+
 
     public Greeting() {}
     public Greeting(String language, String text) {

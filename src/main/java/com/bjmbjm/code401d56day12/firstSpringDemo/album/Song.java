@@ -1,11 +1,8 @@
-package com.bjmbjm.code401d56day12.firstSpringDemo;
+package com.bjmbjm.code401d56day12.firstSpringDemo.album;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-    // Song model
+// Song model
     @Entity
     public class Song {
 
@@ -13,33 +10,49 @@ import javax.persistence.Id;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         long id;
         String title;
-        String album;
+        String albumName;
         int length;
         int trackNumber;
 
 
+
+        @ManyToOne
+        Album album;
+
+
+
         public Song(){}
 
-        public Song(String title, int length, String album ,int trackNumber) {
+        public Song(String title, int length, String albumName ,int trackNumber, Album album) {
             this.title = title;
             this.length = length;
-            this.album = album;
+            this.albumName = albumName;
             this.trackNumber = trackNumber;
+            this.album = album;
+        }
+
+        public long getId() {
+            return this.id;
         }
 
         public String getTitle() {
             return this.title;
         }
 
+        public String getAlbumName() {
+        return this.albumName;
+    }
+
         public int getLength() {
             return this.length;
         }
 
-        public String getAlbum() {
-            return this.album;
-        }
         public int getTrackNumber() {
             return this.trackNumber;
+        }
+
+        public Album getAlbum() {
+            return this.album;
         }
 
 

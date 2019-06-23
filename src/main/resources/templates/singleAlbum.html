@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Albums</title>
+</head>
+<body>
+<h1>[[${album.title}]]</h1>
+<h2>Track List</h2>
+<ul>
+    <li th:each="song : ${albumSongs}">
+        <span th:text="${song.trackNumber}"></span>
+        : <span th:text="${song.title}"></span>,
+        (<span th:text="${song.length}"></span> seconds)
+    </li>
+</ul>
+
+<h3>Add Song</h3>
+
+<!--GETTING: org.hibernate.TransientPropertyValueException: object references an unsaved transient
+    instance - save the transient instance before flushing : com.bjmbjm.code401d56day12.firstSpringDemo.album.Song.album-->
+
+<form method="POST" th:action="@{/albums/addSong/{a}(a=${album.title})}">
+    <label>Song Title</label>
+    <input type="text" name="title">
+
+<!--    <label>Album Title</label>-->
+<!--    <input-->
+<!--            type="text"-->
+<!--            name="albumName"-->
+<!--            th:field="*{album.title}"-->
+<!--    >-->
+    <!--            th:attr="value = ${album.title}"-->
+
+    <label>Track number</label>
+    <input type="number" name="trackNumber">
+
+    <label>Length of song (secs)</label>
+    <input type="number" name="length">
+
+    <input type="submit" />
+</form>
+
+</body>
+</html>
