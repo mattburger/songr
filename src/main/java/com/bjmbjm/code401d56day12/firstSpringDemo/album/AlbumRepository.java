@@ -7,5 +7,5 @@ import java.util.List;
 //Spring to database interaction is setup here
 public interface AlbumRepository extends CrudRepository<Album, Long> {
     // match exactly (method name and parameter name) with the title property in the Album class
-    public List<Album> findByTitle(String title);
+    public Album findByTitle(String title);
 }

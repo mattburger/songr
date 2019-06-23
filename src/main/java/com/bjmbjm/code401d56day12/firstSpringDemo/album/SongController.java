@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,32 +28,4 @@ public class SongController {
         m.addAttribute("songs", songs);
         return "allSongs";
     }
-    @GetMapping("/songs/add")
-    public String addSong(Model m) {
-        m.addAttribute("songs", new Song());
-        return "addSong";
-    }
-
-    @GetMapping("/songs/{id}")
-    public String getSongsByAlbum(@PathVariable Iterable<Long> id, Model m) {
-        Iterable<Song> songs  = songRepository.findAllById(id);
-        m.addAttribute("songs", songs);
-        return "allSongs";
-    }
-
-    @GetMapping("songs/{album}/add")
-    public String addSongToAlbum(@PathVariable String album, Model m) {
-        m.addAttribute("songs", new Song());
-        return "addSongToAlbum";
-    }
-
-    @PostMapping("/songs/add")
-    public RedirectView addSongSubmit(String title, int length, String albumName ,int trackNumber, Album album) {    //(@ModelAttribute Song song {
-
-        songRepository.save(new Song(title, length, albumName, trackNumber, album));
-
-        return new RedirectView("/songs");
-
-    }
-
 }

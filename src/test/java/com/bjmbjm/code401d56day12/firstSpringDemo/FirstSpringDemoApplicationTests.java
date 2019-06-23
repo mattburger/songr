@@ -74,16 +74,7 @@ public class FirstSpringDemoApplicationTests {
 
 
 	}
-// want to add later for route testing
-//	//https://www.baeldung.com/integration-testing-in-spring
-//	@Test
-//	public void testRootPath() {
-//		MvcResult mvcResult = this.mockMvc.perform(get("/greet"))
-//				.andDo(print()).andExpect(status().isOk())
-//				.andExpect(jsonPath("$.message").value("Hello World!!!"))
-//				.andReturn();
-//
-//		assertEquals()
-//	}
+
+
 
 }
